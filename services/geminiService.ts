@@ -4,7 +4,7 @@ import { Region, TrendResponse, GroundingSource } from "../types";
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
 export const fetchTrends = async (region: Region): Promise<TrendResponse> => {
-  const modelId = "gemini-flash-lite-latest";
+  const modelId = "gemini-2.5-flash";
 
   const prompt = `
     Find the top 8 current trending topics, news, or viral content in ${region} right now.
@@ -34,6 +34,9 @@ export const fetchTrends = async (region: Region): Promise<TrendResponse> => {
       contents: prompt,
       config: {
         tools: [{ googleSearch: {} }],
+        temperature: 0.7,
+        topP: 0.9,
+        topK: 50,
       },
     });
 
