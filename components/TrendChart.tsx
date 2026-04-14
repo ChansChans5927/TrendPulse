@@ -17,8 +17,8 @@ interface TrendChartProps {
 
 const TrendChart: React.FC<TrendChartProps> = ({ data, color }) => {
   return (
-    <div className="h-64 w-full mt-4">
-      <ResponsiveContainer width="100%" height="100%">
+    <div style={{ width: "100%", height: 256, marginTop: "1rem" }}>
+      <ResponsiveContainer width="100%" height={256}>
         <BarChart
           data={data}
           layout="vertical"
@@ -46,12 +46,7 @@ const TrendChart: React.FC<TrendChartProps> = ({ data, color }) => {
               color: "#f8fafc",
             }}
           />
-          <Bar
-            dataKey="volume"
-            radius={[0, 4, 4, 0]}
-            fill={color}
-            shape={{ fillOpacity: (entry: any) => 0.6 + entry.volume / 250 }}
-          />
+          <Bar dataKey="volume" radius={[0, 4, 4, 0]} fill={color} />
         </BarChart>
       </ResponsiveContainer>
     </div>
